@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="utf-8">
+  <meta name="Password Generator" content="width=device-width, initial-scale=1.0">
+  <title>Pssword-tool</title>
+</head>
+
+<style>
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body {
+    overflow: hidden; 
+  }
+</style>
+
+<style>
+  body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #671d87, #000000);
+            color: white;
+            font-family: sans-serif;
+
+        }
+</style>
+
+<style>
+  
+
+  .bttn1 {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: #000;
+  color: #9400D3;
+  padding: 15px 30px;
+  border: 2px solid #9400D3;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 5px #9400D3; 
+}
+
+.bttn1:hover {
+  background: #9400D3;
+  color: #000;
+  box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3; 
+  transform: translateY(-2px); 
+}
+
+.bttn1:active {
+  transform: translateY(0);
+}
+
+
+</style> 
+
+<style>
+  .settingsbtn {
+    position: absolute;
+    bottom: 70px;
+    left: 10px;
+    background: #000;
+    color: #9400D3;
+    padding: 15px 35px;
+    border: 2px solid #9400D3;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 5px #9400D3;  }
+  
+  .settingsbtn:hover {
+    background: #9400D3;
+    color: #000;
+    box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+    transform: translateY(-2px);
+  }
+
+  .settingsbtn:active {
+    transform: translateY(0);
+  }
+
+  
+</style>
+
+<style>
+  .Generate {
+    position: absolute;
+    top: 125px;
+    right: 360px;
+    background: #000;
+    color: #9400D3;
+    padding: 15px 35px;
+    border: 2px solid #9400D3;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 5px #9400D3;
+}
+
+  .Generate:hover {
+    background: #9400D3;
+    color: #000;
+    box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+    transform: translateY(-2px);
+}
+
+.Generate:active {
+  transform: translateY(0);
+}
+</style>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #671d87, #000000);
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: flex-start;
+    padding-top: 50px;    
+    font-family: sans-serif;
+}
+
+.label {
+    display: inline-block; 
+    min-width: 200px;       
+    min-height: 25px;      
+    padding: 15px 30px;    
+    background: #000;
+    color: #9400D3;
+    border: 2px solid #9400D3;
+    border-radius: 999px;      
+    font-size: 24px;      
+    text-align: center;
+    box-shadow: 0 0 15px #9400D3;
+    transition: all 0.2s ease; 
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 30px;   
+}
+
+.label:hover {
+    box-shadow: 0 0 20px #9400D3;
+}
+
+.label:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 20px #9400D3;
+}
+</style>
+
+<style>
+  .copyb{
+    position: absolute;
+    top: 125px;
+    right: 280px;
+    background: #000;
+    color: #9400D3;
+    padding: 15px 20px;
+    border: 2px solid #9400D3;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 5px #9400D3;
+
+  }
+
+  .copyb:hover {
+    background: #9400D3;
+    color: #000;
+    box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+    transform: translateY(-2px);
+
+  }
+
+  .copyb:active {
+    transform: translateY(0);
+  }
+</style>
+
+<style>
+  .journal {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #000;
+    color: #9400D3;
+    padding: 15px 20px;
+    border: 2px solid #9400D3;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 5px #9400D3;
+  }
+
+  .journal:hover {
+    background: #9400D3;
+    color: #000;
+    box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+    transform: translateY(-2px);
+
+  }
+
+  .journal:active {
+    transform: translateY(0);
+  }
+</style>
+
+
+<body>
+
+
+  <a  href="https://github.com/niwobyte" target="_blank">
+  <button class="bttn1">my github</button> 
+  </a>
+
+  <a href="settings.html" href="b.js">
+  <button class="settingsbtn">Settings</button>
+  </a>
+
+  <label class="label" id="label" onclick="copy()">Password</label>
+
+  <button class="Generate" type="button" onclick="generate()">Generate</button>
+
+  <button class="copyb" onclick="copy()">Copy</button>
+
+  <a href="journal.html">
+  <button class="journal">journal</button>
+  </a>
+
+  <script>
+  let currentPassword = ""; 
+  const passwordLabel = document.getElementById("label");
+  let isCopyFeedbackActive = false;
+
+  function getSettings() {
+      const savedSettings = localStorage.getItem('passwordSettings');
+      if (savedSettings) {
+          return JSON.parse(savedSettings);
+      }
+    
+      return {
+          length: 12,
+          includeSymbols: true,
+          includeNumbers: true,
+          includeUppercase: true,
+          includeLowercase: true
+      };
+  }
+
+  function generate() {
+      const settings = getSettings(); 
+    
+      let symbols = "";
+      if (settings.includeLowercase) symbols += "abcdefghijklmnopqrstuvwxyz";
+      if (settings.includeUppercase) symbols += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (settings.includeNumbers) symbols += "0123456789";
+      if (settings.includeSymbols) symbols += "!@#$%^&*"; 
+    
+      if (symbols.length === 0) {
+          passwordLabel.innerText = "Error: No character types selected";
+          passwordLabel.style.color = "#FF0000";
+          return;
+      }
+
+      const pass = Array.from({ length: settings.length }, () => 
+          symbols[Math.floor(Math.random() * symbols.length)]
+      ).join("");
+    
+      currentPassword = pass; 
+      passwordLabel.innerText = pass;
+      passwordLabel.style.color = "#9400D3"; 
+  }
+
+  function copy() {
+      const textToCopy = passwordLabel.innerText;
+
+      if (!currentPassword || textToCopy === "Password" || isCopyFeedbackActive) {
+        return;
+      }
+    
+      isCopyFeedbackActive = true;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = passwordLabel.innerText; 
+          passwordLabel.innerText = "Copied!";
+          passwordLabel.style.color = "#fff";
+
+          setTimeout(() => {
+              passwordLabel.innerText = originalText; 
+              passwordLabel.style.color = "#9400D3";
+              isCopyFeedbackActive = false;
+          }, 800);
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+  });
+  </script>
+
+
+
+</body>
+</html>

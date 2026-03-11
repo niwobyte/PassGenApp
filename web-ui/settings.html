@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="settings" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+
+    <style>
+        body::-webkit-scrollbar {
+            width: 12px;
+            background-color: #000;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #9400D3;
+            border-radius: 10px;
+            border: 3px solid #000;
+
+        }
+
+        body {
+            scrollbar-width: none;
+            -ms-overflow-style: none; 
+            overflow: hidden; 
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #671d87, #000000);
+            color: #9400D3;
+            font-family: sans-serif;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            text-shadow: 
+            -1px -1px 0 #000,  
+            1px -1px 0 #000,
+            -1px  1px 0 #000,
+            1px  1px 0 #000;
+
+        }
+
+        .exit {
+            position: absolute;
+            bottom: 20px; 
+            left: 20px;
+            background: #000;
+            color: #9400D3;
+            padding: 15px 30px;
+            border: 2px solid #9400D3;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 5px #9400D3;
+
+        }
+
+        .exit:hover {
+            background: #9400D3;
+            color: #000;
+            box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+            transform: translateY(-2px);
+
+        }
+
+        .exit:active {
+            transform: translateY(0);
+        }
+        
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            cursor: pointer;
+            accent-color: #9400D3;
+            transition: 0.3s;
+            filter: drop-shadow(0 0 2px #9400D3);
+
+        }
+
+        input[type="checkbox"]:hover {
+            filter: drop-shadow(0 0 8px #9400D3);
+            transform: scale(1.7) translateY(-1.5px); 
+
+        }
+
+        input[type="checkbox"]:active {
+            transform: translateY(0);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 125px;
+            height: 6px;
+            background: #222;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+            cursor: pointer;
+            border: 1px solid #9400D3;
+            box-shadow: 0 0 5px #9400D3;
+
+        }
+
+        input[type="range"]:hover {
+            box-shadow: 0 0 15px #9400D3;
+            transform: translateY(-1.5px);
+
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12.5px;
+            height: 12.5px;
+            background: #9400D3;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px #9400D3;
+            transition: 0.3s;
+
+        }
+
+        input[type="range"]:hover::-webkit-slider-thumb {
+            background: #fff; 
+            box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+
+        }
+
+        
+
+        .save-btn {
+            background: #000;
+            color: #9400D3;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px #9400D3;
+
+        }
+
+        .save-btn:hover {
+            background: #9400D3;
+            color: #000;
+            box-shadow: 0 0 20px #9400D3, 0 0 40px #9400D3;
+            transform: translateY(-2px);
+
+        }
+
+        .save-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+
+
+</head>
+<body>
+
+<a href="index.html">
+    <button class="exit">quit</button>
+</a>
+
+
+<div class="setting-item">
+    <label for="passwordLength">Password length: <span id="lengthValue">12</span></label>
+    <input type="range" id="passwordLength" min="4" max="32" value="12">
+</div>
+
+<div class="setting-item">
+    <label for="includeUppercase">Capital letters (A-Z)</label>
+    <input type="checkbox" id="includeUppercase" checked>
+</div>
+
+<div class="setting-item">
+    <label for="includeLowercase">letters (a-z)</label>
+    <input type="checkbox" id="includeLowercase" checked>
+</div>
+
+<div class="setting-item">
+    <label for="includeNumbers">Numbers (0-9)</label>
+    <input type="checkbox" id="includeNumbers" checked>
+</div>
+
+<div class="setting-item">
+    <label for="includeSymbols">symbols (!@#$%...)</label>
+    <input type="checkbox" id="includeSymbols" checked>
+</div>
+
+<button class="save-btn" onclick="saveSettings()">save settings</button>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const savedSettings = localStorage.getItem('passwordSettings');
+    if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        document.getElementById('passwordLength').value = settings.length;
+        document.getElementById('lengthValue').innerText = settings.length;
+        document.getElementById('includeUppercase').checked = settings.includeUppercase;
+        document.getElementById('includeLowercase').checked = settings.includeLowercase;
+        document.getElementById('includeNumbers').checked = settings.includeNumbers;
+        document.getElementById('includeSymbols').checked = settings.includeSymbols;
+    }
+
+   
+    document.getElementById('passwordLength').addEventListener('input', function() {
+        document.getElementById('lengthValue').innerText = this.value;
+    });
+});
+
+
+function saveSettings() {
+    const settings = {
+        length: parseInt(document.getElementById('passwordLength').value),
+        includeUppercase: document.getElementById('includeUppercase').checked,
+        includeLowercase: document.getElementById('includeLowercase').checked,
+        includeNumbers: document.getElementById('includeNumbers').checked,
+        includeSymbols: document.getElementById('includeSymbols').checked
+    };
+    
+    
+    localStorage.setItem('passwordSettings', JSON.stringify(settings));
+}
+</script>
+
+
+
+</body>
+</html>
