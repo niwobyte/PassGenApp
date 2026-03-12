@@ -10,6 +10,14 @@ A modern password generator with a sleek web interface (HTML/CSS/JS) and a power
   <img src="assets/txt.png" width="24%" />
 </div>
 
+## 🛡️ Security
+- **CSPRNG**: To ensure cryptographically secure generation of random numbers, the window.crypto.getRandomValues() method is used.
+- **100% Offline**: No data ever leaves your device. No cloud, no leaks.
+
+## ⚠️ Security Notice
+*   **Confidentiality:** If you save passwords to a `.txt` file, treat it as sensitive data. **Do not share this file with anyone.**
+*   **Protection:** It is highly recommended to move generated passwords to a dedicated password manager or encrypt the file if you are on a shared computer.
+
 ## ✨ Key Features
 - **Modern UI**: Clean and intuitive web interface.
 - **Journal**: Track and manage your generated passwords.
