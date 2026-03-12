@@ -4,10 +4,10 @@ A modern password generator with a sleek web interface (HTML/CSS/JS) and a power
 
 ## 📸 img/Instructions
 <div align="center">
-  <img src="assets/index.png" width="26%" />
-  <img src="assets/journal.png" width="26%" />
-  <img src="assets/settings.png" width="26%" />
-  <img src="assets/txt.png" width="26%" />
+  <img src="assets/index.png" width="24%" />
+  <img src="assets/journal.png" width="24%" />
+  <img src="assets/settings.png" width="24%" />
+  <img src="assets/txt.png" width="24%" />
 </div>
 
 ## ✨ Key Features
