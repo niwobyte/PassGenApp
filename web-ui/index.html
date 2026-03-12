@@ -264,29 +264,31 @@ body {
       };
   }
 
-  function generate() {
-      const settings = getSettings(); 
-    
-      let symbols = "";
-      if (settings.includeLowercase) symbols += "abcdefghijklmnopqrstuvwxyz";
-      if (settings.includeUppercase) symbols += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      if (settings.includeNumbers) symbols += "0123456789";
-      if (settings.includeSymbols) symbols += "!@#$%^&*"; 
-    
-      if (symbols.length === 0) {
-          passwordLabel.innerText = "Error: No character types selected";
-          passwordLabel.style.color = "#FF0000";
-          return;
-      }
+ function generate() {
+    const settings = getSettings(); 
+    let symbols = "";
+    if (settings.includeLowercase) symbols += "abcdefghijklmnopqrstuvwxyz";
+    if (settings.includeUppercase) symbols += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (settings.includeNumbers) symbols += "0123456789";
+    if (settings.includeSymbols) symbols += "!@#$%^&*"; 
 
-      const pass = Array.from({ length: settings.length }, () => 
-          symbols[Math.floor(Math.random() * symbols.length)]
-      ).join("");
+    if (symbols.length === 0) {
+        passwordLabel.innerText = "Error: No character types selected";
+        passwordLabel.style.color = "#FF0000";
+        return;
+    }
+
+    const array = new Uint32Array(settings.length);
+    window.crypto.getRandomValues(array);
     
-      currentPassword = pass; 
-      passwordLabel.innerText = pass;
-      passwordLabel.style.color = "#9400D3"; 
-  }
+    const pass = Array.from(array, (val) => 
+        symbols[val % symbols.length]
+    ).join("");
+    
+    currentPassword = pass; 
+    passwordLabel.innerText = pass;
+    passwordLabel.style.color = "#9400D3"; 
+}
 
   function copy() {
       const textToCopy = passwordLabel.innerText;
