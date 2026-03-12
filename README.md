@@ -2,6 +2,8 @@
 
 A modern password generator with a sleek web interface (HTML/CSS/JS) and a powerful Python backend.
 
+## images
+
 ![Application Preview](assets/index.png)
 ![Application Preview](assets/settings.png)
 ![Application Preview](assets/journal.png)
