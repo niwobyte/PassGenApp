@@ -11,7 +11,7 @@ A modern password generator with a sleek web interface (HTML/CSS/JS) and a power
 </div>
 
 ## 🛡️ Security
-- **CSPRNG**: To ensure cryptographically secure generation of random numbers, the window.crypto.getRandomValues() method is used.
+- **CSPRNG**: To ensure cryptographically secure generation of random numbers, the `window.crypto.getRandomValues()` method is used.
 - **100% Offline**: No data ever leaves your device. No cloud, no leaks.
 
 ## ⚠️ Security Notice
