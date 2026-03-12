@@ -2,13 +2,15 @@
 
 A modern password generator with a sleek web interface (HTML/CSS/JS) and a powerful Python backend.
 
-## 📸 img/Instructions
-<div align="center">
-  <img src="assets/index.png" width="24%" />
-  <img src="assets/journal.png" width="24%" />
-  <img src="assets/settings.png" width="24%" />
-  <img src="assets/txt.png" width="24%" />
-</div>
+## 📸 Instructions
+<p align="center">
+  <img src="assets/index.png" width="45%" />
+  <img src="assets/journal.png" width="45%" />
+</p>
+<p align="center">
+  <img src="assets/settings.png" width="45%" />
+  <img src="assets/txt.png" width="45%" />
+</p>
 
 ## 🛡️ Security
 - **CSPRNG**: To ensure cryptographically secure generation of random numbers, the `window.crypto.getRandomValues()` method is used.
