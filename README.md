@@ -2,12 +2,13 @@
 
 A modern password generator with a sleek web interface (HTML/CSS/JS) and a powerful Python backend.
 
-## images
-
-![Application Preview](assets/index.png)
-![Application Preview](assets/settings.png)
-![Application Preview](assets/journal.png)
-![Application Preview](assets/txt.png)
+## 📸 img/Instructions
+<div align="center">
+  <img src="assets/index.png" width="24%" />
+  <img src="assets/journal.png" width="24%" />
+  <img src="assets/settings.png" width="24%" />
+  <img src="assets/txt.png" width="24%" />
+</div>
 
 ## ✨ Key Features
 - **Modern UI**: Clean and intuitive web interface.
