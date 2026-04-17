@@ -4,7 +4,7 @@ A modern password generator with a sleek web interface (HTML/CSS/JS) and a power
 
 ## 📸 Instructions
 <p align="center">
-  <img src="assets/index.png" width="45%" />
+  <img src="assets/index.png" width="45%" />s
   <img src="assets/journal.png" width="45%" />
 </p>
 <p align="center">
