@@ -179,37 +179,44 @@
     </table>
     
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const inputs = document.querySelectorAll('.journal input');
-        const savebtn = document.querySelector('.save');
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputs = document.getElementsByTagName('input'); 
+        var savebtn = document.querySelector('.save');
 
-        inputs.forEach(input => {
-            const saved = localStorage.getItem(input.id);
-            if (saved) input.value = saved;
-            input.oninput = () => localStorage.setItem(input.id, input.value);
-        });
+        for (var i = 0; i < inputs.length; i++) {
+            var id = inputs[i].id;
+            var savedValue = localStorage.getItem(id);
+            
+            if (savedValue != null) {
+                inputs[i].value = savedValue;
+            }
 
-        savebtn.onclick = () => {
-            let content = "";
-            let count = 1;
-            let hasData = false;
+            inputs[i].oninput = function() {
+                localStorage.setItem(this.id, this.value);
+            };
+        }
 
-            inputs.forEach(input => {
-                if (input.value.trim() !== "") {
-                    content += `${count}. ${input.value}\n\n`;
-                    count++;
-                    hasData = true;
+        savebtn.onclick = function() {
+            var content = "";
+            var nummer = 1;
+            var hatInhalt = false;
+
+            for (var j = 0; j < inputs.length; j++) {
+                var text = inputs[j].value;
+                
+                if (text.trim() != "") {
+                    content = content + nummer + ". " + text + "\n\n";
+                    nummer = nummer + 1;
+                    hatInhalt = true;
                 }
-            });
+            }
 
-            if (hasData && window.pywebview && window.pywebview.api) {
-                window.pywebview.api.txt(content).then(() => {
-
-                    inputs.forEach(input => {
-                        input.value = ""; 
-                        localStorage.removeItem(input.id); 
-                    });
-
+            if (hatInhalt == true && window.pywebview && window.pywebview.api) {
+                window.pywebview.api.txt(content).then(function() {
+                    for (var k = 0; k < inputs.length; k++) {
+                        inputs[k].value = "";
+                        localStorage.removeItem(inputs[k].id);
+                    }
                 });
             }
         };
