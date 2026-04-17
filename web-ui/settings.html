@@ -207,36 +207,48 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-    const savedSettings = localStorage.getItem('passwordSettings');
-    if (savedSettings) {
-        const settings = JSON.parse(savedSettings);
-        document.getElementById('passwordLength').value = settings.length;
-        document.getElementById('lengthValue').innerText = settings.length;
-        document.getElementById('includeUppercase').checked = settings.includeUppercase;
-        document.getElementById('includeLowercase').checked = settings.includeLowercase;
-        document.getElementById('includeNumbers').checked = settings.includeNumbers;
-        document.getElementById('includeSymbols').checked = settings.includeSymbols;
+    document.addEventListener('DOMContentLoaded', function() {
+    
+    var daten = localStorage.getItem('passwordSettings');
+    
+    if (daten) {
+        var s = JSON.parse(daten);
+        
+        document.getElementById('passwordLength').value = s.length;
+        document.getElementById('lengthValue').innerHTML = s.length; 
+        document.getElementById('includeUppercase').checked = s.includeUppercase;
+        document.getElementById('includeLowercase').checked = s.includeLowercase;
+        document.getElementById('includeNumbers').checked = s.includeNumbers;
+        document.getElementById('includeSymbols').checked = s.includeSymbols;
     }
 
-   
-    document.getElementById('passwordLength').addEventListener('input', function() {
-        document.getElementById('lengthValue').innerText = this.value;
-    });
+    
+    var slider = document.getElementById('passwordLength');
+    slider.oninput = function() {
+        var zahl = document.getElementById('lengthValue');
+        zahl.innerHTML = this.value;
+    };
 });
 
-
 function saveSettings() {
-    const settings = {
-        length: parseInt(document.getElementById('passwordLength').value),
-        includeUppercase: document.getElementById('includeUppercase').checked,
-        includeLowercase: document.getElementById('includeLowercase').checked,
-        includeNumbers: document.getElementById('includeNumbers').checked,
-        includeSymbols: document.getElementById('includeSymbols').checked
+   
+    var laenge = document.getElementById('passwordLength').value;
+    var gross = document.getElementById('includeUppercase').checked;
+    var klein = document.getElementById('includeLowercase').checked;
+    var zahlen = document.getElementById('includeNumbers').checked;
+    var sonder = document.getElementById('includeSymbols').checked;
+
+    var settingsObjekt = {
+        length: parseInt(laenge),
+        includeUppercase: gross,
+        includeLowercase: klein,
+        includeNumbers: zahlen,
+        includeSymbols: sonder
     };
     
     
-    localStorage.setItem('passwordSettings', JSON.stringify(settings));
+    var text = JSON.stringify(settingsObjekt);
+    localStorage.setItem('passwordSettings', text);
 }
 </script>
 
