@@ -19,7 +19,6 @@ class Api:
             with open(path, "a", encoding="utf-8") as f:
                 f.write(ascii_text + "\n" + "-"*20 + "\n"*2 + data + "\n" + "-"*20 + "\n")
                 
-
         except Exception as e:
             print(f"Error: {str(e)}")
 
