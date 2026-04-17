@@ -245,74 +245,75 @@ body {
   </a>
 
   <script>
-  let currentPassword = ""; 
-  const passwordLabel = document.getElementById("label");
-  let isCopyFeedbackActive = false;
+ var anzeige = document.getElementById("label");
+var aktuellesPasswort = "";
 
-  function getSettings() {
-      const savedSettings = localStorage.getItem('passwordSettings');
-      if (savedSettings) {
-          return JSON.parse(savedSettings);
-      }
-    
-      return {
-          length: 12,
-          includeSymbols: true,
-          includeNumbers: true,
-          includeUppercase: true,
-          includeLowercase: true
-      };
-  }
+function generate() {
+    var saved = localStorage.getItem('passwordSettings');
+    var laenge = 12; 
+    var gross = true;
+    var klein = true;
+    var zahlen = true;
+    var sonder = true;
 
- function generate() {
-    const settings = getSettings(); 
-    let symbols = "";
-    if (settings.includeLowercase) symbols += "abcdefghijklmnopqrstuvwxyz";
-    if (settings.includeUppercase) symbols += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (settings.includeNumbers) symbols += "0123456789";
-    if (settings.includeSymbols) symbols += "!@#$%^&*"; 
+    if (saved) {
+        var s = JSON.parse(saved);
+        laenge = s.length;
+        gross = s.includeUppercase;
+        klein = s.includeLowercase;
+        zahlen = s.includeNumbers;
+        sonder = s.includeSymbols;
+    }
 
-    if (symbols.length === 0) {
-        passwordLabel.innerText = "Error: No character types selected";
-        passwordLabel.style.color = "#FF0000";
+   
+    var alleZeichen = "";
+    if (klein == true) {
+        alleZeichen = alleZeichen + "abcdefghijklmnopqrstuvwxyz";
+    }
+    if (gross == true) {
+        alleZeichen = alleZeichen + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }
+    if (zahlen == true) {
+        alleZeichen = alleZeichen + "0123456789";
+    }
+    if (sonder == true) {
+        alleZeichen = alleZeichen + "!@#$%^&*";
+    }
+
+    if (alleZeichen == "") {
+        anzeige.innerText = "Fehler: Nix gewählt";
+        anzeige.style.color = "red";
         return;
     }
 
-    const array = new Uint32Array(settings.length);
-    window.crypto.getRandomValues(array);
-    
-    const pass = Array.from(array, (val) => 
-        symbols[val % symbols.length]
-    ).join("");
-    
-    currentPassword = pass; 
-    passwordLabel.innerText = pass;
-    passwordLabel.style.color = "#9400D3"; 
+    var ergebnis = "";
+    for (var i = 0; i < laenge; i++) {
+        var zufall = Math.floor(Math.random() * alleZeichen.length);
+        ergebnis = ergebnis + alleZeichen.charAt(zufall);
+    }
+
+    aktuellesPasswort = ergebnis;
+    anzeige.innerText = ergebnis;
+    anzeige.style.color = "#9400D3"; 
 }
 
-  function copy() {
-      const textToCopy = passwordLabel.innerText;
-
-      if (!currentPassword || textToCopy === "Password" || isCopyFeedbackActive) {
-        return;
-      }
+function copy() {
     
-      isCopyFeedbackActive = true;
-      navigator.clipboard.writeText(textToCopy).then(() => {
-          const originalText = passwordLabel.innerText; 
-          passwordLabel.innerText = "Copied!";
-          passwordLabel.style.color = "#fff";
+    if (aktuellesPasswort == "" || anzeige.innerText == "Password") {
+        return; 
+    }
 
-          setTimeout(() => {
-              passwordLabel.innerText = originalText; 
-              passwordLabel.style.color = "#9400D3";
-              isCopyFeedbackActive = false;
-          }, 800);
-      });
-  }
+    navigator.clipboard.writeText(aktuellesPasswort);
+    
+    var alterText = anzeige.innerText;
+    anzeige.innerText = "Copied";
+    anzeige.style.color = "white";
 
-  document.addEventListener('DOMContentLoaded', (event) => {
-  });
+    setTimeout(function() {
+        anzeige.innerText = alterText;
+        anzeige.style.color = "#9400D3";
+    }, 1000);
+}
   </script>
 
 
