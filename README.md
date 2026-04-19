@@ -1,4 +1,4 @@
-# Web-Based Password Generator
+# HTML-Based Password Generator
 
 A modern password generator with a sleek web interface (HTML/CSS/JS) and a powerful Python backend.
 
