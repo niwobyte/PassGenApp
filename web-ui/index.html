@@ -245,73 +245,75 @@ body {
   </a>
 
   <script>
-var anzeige = document.getElementById("label");
-var aktuellesPasswort = "";
+var label = document.getElementById("label");
+var actual = "";
 
 function generate() {
     var saved = localStorage.getItem('passwordSettings');
-    var laenge = 12; 
-    var gross = true;
-    var klein = true;
-    var zahlen = true;
-    var sonder = true;
+    var length = 12; 
+    var capital = true;
+    var small = true;
+    var numbers = true;
+    var symbols = true;
 
     if (saved) {
         var s = JSON.parse(saved);
-        laenge = s.length;
-        gross = s.includeUppercase;
-        klein = s.includeLowercase;
-        zahlen = s.includeNumbers;
-        sonder = s.includeSymbols;
+        length = s.length;
+        capital = s.includeUppercase;
+        small = s.includeLowercase;
+        numbers = s.includeNumbers;
+        symbols = s.includeSymbols;
     }
 
    
-    var alleZeichen = "";
-    if (klein == true) {
-        alleZeichen = alleZeichen + "abcdefghijklmnopqrstuvwxyz";
+    var all = "";
+    if (small == true) {
+        all = all + "abcdefghijklmnopqrstuvwxyz";
     }
-    if (gross == true) {
-        alleZeichen = alleZeichen + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (capital == true) {
+        all = all + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
-    if (zahlen == true) {
-        alleZeichen = alleZeichen + "0123456789";
+    if (numbers == true) {
+        all = all + "0123456789";
     }
-    if (sonder == true) {
-        alleZeichen = alleZeichen + "!@#$%^&*";
+    if (symbols == true) {
+        all = all + "!@#$%^&*";
     }
 
-    if (alleZeichen == "") {
-        anzeige.innerText = "Fehler: Nix gewählt";
-        anzeige.style.color = "red";
+    if (all == "") {
+        label.innerText = "choose something in Settings";
+        label.style.color = "red";
         return;
     }
 
-    var ergebnis = "";
-    for (var i = 0; i < laenge; i++) {
-        var zufall = Math.floor(Math.random() * alleZeichen.length);
-        ergebnis = ergebnis + alleZeichen.charAt(zufall);
+    var result = ""; 
+    var cryptoValues = new Uint32Array(length);
+    window.crypto.getRandomValues(cryptoValues);
+      for (var i = 0; i < length; i++) {
+        var index = cryptoValues[i] % all.length;
+        result += all.charAt(index); 
     }
 
-    aktuellesPasswort = ergebnis;
-    anzeige.innerText = ergebnis;
-    anzeige.style.color = "#9400D3"; 
+    actual = result;
+    label.innerText = result;
+    label.style.color = "#9400D3"; 
 }
 
 function copy() {
     
-    if (aktuellesPasswort == "" || anzeige.innerText == "Password") {
+    if (actual == "" || label.innerText == "Password") {
         return; 
     }
 
-    navigator.clipboard.writeText(aktuellesPasswort);
+    navigator.clipboard.writeText(actual);
     
-    var alterText = anzeige.innerText;
-    anzeige.innerText = "Copied";
-    anzeige.style.color = "white";
+    var oldtext = label.innerText;
+    label.innerText = "Copied";
+    label.style.color = "white";
 
     setTimeout(function() {
-        anzeige.innerText = alterText;
-        anzeige.style.color = "#9400D3";
+        label.innerText = oldtext;
+        label.style.color = "#9400D3";
     }, 1000);
 }
   </script>
