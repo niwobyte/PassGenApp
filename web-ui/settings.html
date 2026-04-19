@@ -209,10 +209,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     
-    var daten = localStorage.getItem('passwordSettings');
+    var data = localStorage.getItem('passwordSettings');
     
-    if (daten) {
-        var s = JSON.parse(daten);
+    if (data) {
+        var s = JSON.parse(data);
         
         document.getElementById('passwordLength').value = s.length;
         document.getElementById('lengthValue').innerHTML = s.length; 
@@ -232,18 +232,18 @@
 
 function saveSettings() {
    
-    var laenge = document.getElementById('passwordLength').value;
-    var gross = document.getElementById('includeUppercase').checked;
-    var klein = document.getElementById('includeLowercase').checked;
-    var zahlen = document.getElementById('includeNumbers').checked;
-    var sonder = document.getElementById('includeSymbols').checked;
+    var length = document.getElementById('passwordLength').value;
+    var capital = document.getElementById('includeUppercase').checked;
+    var small = document.getElementById('includeLowercase').checked;
+    var numbers = document.getElementById('includeNumbers').checked;
+    var symbols = document.getElementById('includeSymbols').checked;
 
     var settingsObjekt = {
-        length: parseInt(laenge),
-        includeUppercase: gross,
-        includeLowercase: klein,
-        includeNumbers: zahlen,
-        includeSymbols: sonder
+        length: parseInt(length),
+        includeUppercase: capital,
+        includeLowercase: small,
+        includeNumbers: numbers,
+        includeSymbols: symbols
     };
     
     
